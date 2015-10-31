@@ -44,8 +44,7 @@ public class CadUsuarioFrame extends AbstractFrame {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					UIManager.setLookAndFeel(
-							"com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
+					UIManager.setLookAndFeel("com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
 					CadUsuarioFrame frame = new CadUsuarioFrame();
 					frame.setLocationRelativeTo(null);
 					frame.setVisible(true);
@@ -63,10 +62,8 @@ public class CadUsuarioFrame extends AbstractFrame {
 
 		usuarioBO = new UsuarioBO();
 
-		setTitle(
-				"Arquitetura PIN2 - Cadastro de Usuário (Prof. Adriano Patrick Cunha)");
-		setIconImage(Toolkit.getDefaultToolkit().getImage(
-				LoginFrame.class.getResource("imagens/logo_unifor.png")));
+		setTitle("Arquitetura PIN2 - Cadastro de Usuário (Prof. Adriano Patrick Cunha)");
+		setIconImage(Toolkit.getDefaultToolkit().getImage(LoginFrame.class.getResource("imagens/logo_unifor.png")));
 		setBounds(100, 100, 577, 349);
 		contentPane = new JPanel();
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -76,8 +73,7 @@ public class CadUsuarioFrame extends AbstractFrame {
 		messages.setBounds(10, 45, 269, 14);
 		contentPane.add(messages);
 
-		JLabel lblCadastroDoUsurio = new JLabel(
-				"Cadastro do Usuário > novo usuário");
+		JLabel lblCadastroDoUsurio = new JLabel("Cadastro do Usuário > novo usuário");
 		lblCadastroDoUsurio.setFont(new Font("Tahoma", Font.BOLD, 12));
 		lblCadastroDoUsurio.setBounds(10, 11, 244, 14);
 		contentPane.add(lblCadastroDoUsurio);
@@ -95,8 +91,7 @@ public class CadUsuarioFrame extends AbstractFrame {
 		contentPane.add(lblSenha);
 
 		txtFieldLogin = new JTextField();
-		txtFieldLogin.setUI(new HintTextField("Insira seu email. ex@gmail.com",
-				true, Color.LIGHT_GRAY));
+		txtFieldLogin.setUI(new HintTextField("Insira seu email. ex@gmail.com", true, Color.LIGHT_GRAY));
 		txtFieldLogin.setBounds(217, 101, 168, 20);
 		contentPane.add(txtFieldLogin);
 		txtFieldLogin.setColumns(10);
@@ -121,8 +116,7 @@ public class CadUsuarioFrame extends AbstractFrame {
 					Usuarios usuario = new Usuarios();
 					usuario.setNome(txtFieldNome.getText());
 					usuario.setLogin(txtFieldLogin.getText());
-					usuario.setSenha(Criptografia
-							.encripta(String.valueOf(passwordField.getPassword())));
+					usuario.setSenha(Criptografia.encripta(String.valueOf(passwordField.getPassword())));
 					try {
 						usuarioBO.salvar(usuario);
 						login().msgInfo("Usuário cadastrado com sucesso!");
@@ -147,7 +141,7 @@ public class CadUsuarioFrame extends AbstractFrame {
 	}
 
 	private boolean validaCamposObrigatorios() {
-		if (txtFieldLogin.getText().trim().isEmpty()
+		if (txtFieldNome.getText().trim().isEmpty() || txtFieldLogin.getText().trim().isEmpty()
 				|| passwordField.getPassword().toString().trim().isEmpty()) {
 			msgError("Campos Obrigatórios não preenchidos.");
 			return false;

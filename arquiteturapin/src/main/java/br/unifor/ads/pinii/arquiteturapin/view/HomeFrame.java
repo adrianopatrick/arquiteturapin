@@ -67,10 +67,16 @@ public class HomeFrame extends AbstractFrame {
 		menuBar.setBounds(0, 0, 534, 28);
 		contentPane.add(menuBar);
 		
-		JMenu mnFunc = new JMenu("Func1");
+		JMenu mnFunc = new JMenu("Cadastros");
 		menuBar.add(mnFunc);
 		
-		JMenuItem mntmFunc = new JMenuItem("Item1");
+		JMenuItem mntmFunc = new JMenuItem("Funcionário");
+		mntmFunc.addActionListener(new ActionListener() {
+			@Override
+			public void actionPerformed(ActionEvent e) {
+				cadFuncionario();
+			}
+		});
 		mnFunc.add(mntmFunc);
 		
 		JMenu mnFunc_1 = new JMenu("Func2");

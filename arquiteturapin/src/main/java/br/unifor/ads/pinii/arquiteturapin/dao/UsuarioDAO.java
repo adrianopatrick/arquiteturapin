@@ -33,20 +33,15 @@ public class UsuarioDAO {
 	}
 
 	public void salvar(Usuarios usuario) throws DAOException {
-		em.execute("insert into usuarios (nome, login, senha) values (?, ?, ?)",
-				usuario.getNome(), usuario.getLogin(), usuario.getSenha());
+		em.execute("insert into usuarios (nome, login, senha) values (?, ?, ?)", usuario.getNome(), usuario.getLogin(),
+				usuario.getSenha());
 	}
 
-	public Usuarios buscarUsuarioPorLoginSenha(Usuarios usuario)
-			throws DAOException {
+	public Usuarios buscarUsuarioPorLoginSenha(Usuarios usuario) throws DAOException {
 		Usuarios user = null;
-		try {
-			user = (Usuarios) em.getSingleResult(
-					"select * from usuarios where login = ? and senha = ?",
-					usuario.getLogin(), usuario.getSenha());
-		} catch (DAOException ex) {
-			throw new DAOException("Login ou Senha inválidos!", ex.getCause());
-		}
+
+		user = (Usuarios) em.getSingleResult("select * from usuarios where login = ? and senha = ?", usuario.getLogin(),
+				usuario.getSenha());
 		return user;
 	}
 

@@ -107,5 +107,21 @@ public class AbstractFrame extends JFrame {
 		}
 		return frame;
 	}
+	
+	/**
+	 * Tela de Cadastro do usuário
+	 */
+	public AbstractFrame cadFuncionario() {
+		CadFuncionarioFrame frame = new CadFuncionarioFrame();
+		try {
+			UIManager.setLookAndFeel(
+					"com.sun.java.swing.plaf.windows.WindowsLookAndFeel");
+			frame.setLocationRelativeTo(null);
+			frame.setVisible(true);
+		} catch (Exception ex) {
+			ex.printStackTrace();
+		}
+		return frame;
+	}
 
 }

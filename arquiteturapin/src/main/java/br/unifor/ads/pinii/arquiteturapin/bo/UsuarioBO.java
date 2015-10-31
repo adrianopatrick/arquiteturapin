@@ -25,7 +25,6 @@ public class UsuarioBO {
 	
 	public void salvar(Usuarios usuario) throws DAOException{
 		try {
-			//TODO criptografar a senha
 			this.usuarioDAO.salvar(usuario);
 		} catch (DAOException e) {
 			logger.error(e.getMessage(), e);
@@ -39,10 +38,11 @@ public class UsuarioBO {
 			user = this.usuarioDAO.buscarUsuarioPorLoginSenha(usuario);
 			if(user != null){
 				SegurancaTO.setUsuario(user);
+			} else {
+				throw new DAOException("Login ou Senha inválidos!");
 			}
 		} catch (DAOException e) {
 			logger.error(e.getMessage(), e);
-			System.out.println(e.getCause().getMessage());
 			throw e;
 		}
 		return user != null;
