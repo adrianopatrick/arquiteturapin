@@ -20,7 +20,7 @@ public class ConnectionFactory {
 
 	private static Logger logger = Logger.getLogger(ConnectionFactory.class);
 	private static final ConnectionFactory connectionFactory = new ConnectionFactory();
-	private static HikariDataSource dataSource;
+	private static HikariDataSource pool;
 
 	private ConnectionFactory() {
 		HikariConfig config = new HikariConfig();
@@ -33,14 +33,14 @@ public class ConnectionFactory {
 		config.setUsername("postgres");
 		config.setPassword("unifor");
 		config.setMinimumIdle(2);
-		config.setMaximumPoolSize(20); //default 10
+		config.setMaximumPoolSize(10); //default 10
 		config.setConnectionTestQuery("SELECT 1 ");
 
-		dataSource = new HikariDataSource(config);
+		pool = new HikariDataSource(config);
 	}
 	
 	public static Connection getConnection() throws SQLException{
-		return dataSource.getConnection();
+		return pool.getConnection();
 	}
 	
 }

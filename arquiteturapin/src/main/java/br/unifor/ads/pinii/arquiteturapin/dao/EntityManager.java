@@ -22,7 +22,7 @@ public abstract class EntityManager {
 
 	private Logger logger = Logger.getLogger(EntityManager.class);
 
-	public void execute(String sql, Object... params) throws DAOException {
+	public void execute(String sql, Object...params) throws DAOException {
 
 		Connection conn = null;
 		PreparedStatement pstm = null;
@@ -46,7 +46,7 @@ public abstract class EntityManager {
 		}
 	}
 
-	public Object getSingleResult(String sql, Object... params)
+	public Object getSingleResult(String sql, Object...params)
 			throws DAOException {
 
 		ResultSet resultSet = null;
@@ -69,7 +69,12 @@ public abstract class EntityManager {
 			String msg = "Não foi possível realizar a consulta.";
 			logger.error(msg);
 			throw new DAOException(msg, e);
-		} finally {
+		} catch (ExceptionInInitializerError e) {
+			String msg = "Banco de Dados não responde.";
+			logger.error(msg);
+			throw new DAOException(msg, e);
+		} 
+		finally {
 			close(conn, pstm, resultSet);
 		}
 

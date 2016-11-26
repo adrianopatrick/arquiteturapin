@@ -14,13 +14,13 @@ public class FuncionarioDAO {
 		this.em = new EntityManager() {
 			
 			@Override
-			public Object trataResultSet(ResultSet rs) throws SQLException {
+			public Funcionarios trataResultSet(ResultSet rs) throws SQLException {
 				Funcionarios funcionario = new Funcionarios();
 				funcionario.setId(rs.getInt("id"));
 				funcionario.setNome(rs.getString("nome"));
 				funcionario.setCpf(rs.getString("cpf"));
 				funcionario.setSalario(rs.getDouble("salario"));
-				return null;
+				return funcionario;
 			}
 		};
 	}
